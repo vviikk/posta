@@ -1,0 +1,5 @@
+.venv
+*.log
+.env
+posters/*.jpg
+__pycache__
