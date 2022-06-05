@@ -11,7 +11,7 @@ from load_env import load_env
 load_env()
 
 
-base_url = os.getenv("POSTA_BASE_URL")
+base_url = os.getenv("POSTA_PLEX_BASE_URL")
 plex_username = os.getenv("POSTA_PLEX_USERNAME")
 plex_password = os.getenv("POSTA_PLEX_PASSWORD")
 plex_server_name = os.getenv("POSTA_PLEX_SERVER_NAME")
