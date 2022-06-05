@@ -3,3 +3,4 @@
 .env
 posters/*.jpg
 __pycache__
+token.txt
