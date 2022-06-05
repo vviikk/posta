@@ -1,2 +1,4 @@
 PlexAPI==4.11.2
 cinemagoer==2022.2.11
+flask==2.1.2
+python-dotenv==0.20.0

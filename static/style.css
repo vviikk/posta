@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+:root {
+  font-size: calc(15px + 0.390625vw);
+  --heading-height: 3rem;
+}
+
+.poster {
+  padding: 0 1rem;
+  width: 100%;
+  background: black;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  width: calc(100vw - 2rem);
+}
+ul li {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: calc(100vh - var(--heading-height));
+  margin: 0;
+  align-items: center;
+  text-align: center;
+}
+ul li img {
+  --img-height: calc(100% - 0.5rem);
+  max-height: var(--img-height);
+  height: var(--img-height);
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  background: black;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+
+  display: flex;
+  justify-content: center;
+  align-self: center;
+
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem;
+  border: 1px solid white;
+  border-radius: 8px;
+  line-height: var(--heading-height - 1rem);
+  background: black;
+
+  color: white;
+  text-align: center;
+  font-size: calc(var(--heading-height) * .40);
+  font-family: "Poiret One", cursive;
+  text-transform: uppercase;
+}

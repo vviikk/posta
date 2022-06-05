@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Now Showing</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <section>
+      <h1>{{heading}}</h1>
+      <div class="poster">
+        <ul class="slider">
+          {% for poster in movie_posters %}
+          <li class="slider__slide"><img src="/posters/{{ poster }}" /></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+    <!-- partial -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+    <script src="/static/script.js"></script>
+  </body>
+</html>
