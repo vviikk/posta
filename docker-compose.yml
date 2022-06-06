@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  posta:
+    build:
+      context: .
+    volumes:
+      - "./posters:/app/posters"
+    ports:
+      - 5999:5999

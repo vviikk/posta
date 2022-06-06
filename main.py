@@ -17,8 +17,8 @@ plex_password = os.getenv("POSTA_PLEX_PASSWORD")
 plex_server_name = os.getenv("POSTA_PLEX_SERVER_NAME")
 plex_movie_library = os.getenv("POSTA_PLEX_MOVIE_LIBRARY")
 plex_token = os.getenv("POSTA_PLEX_TOKEN")
-header_text_now_playing = os.getenv("POSTA_TEXT_NOW_PLAYING") or "NOW PLAYING"
-header_text_idle = os.getenv("POSTA_TEXT_IDLE") or "COMING SOON"
+header_text_now_playing = os.getenv("POSTA_TEXT_NOW_PLAYING", "NOW PLAYING")
+header_text_idle = os.getenv("POSTA_TEXT_IDLE", "COMING SOON")
 ia = Cinemagoer()
 
 
@@ -102,11 +102,13 @@ def show_posters():
         posters = [get_poster_file_name(movie) for movie in random_movies]
     else:
         posters = [get_poster_file_name(movie) for movie in current_sessions]
-    # if now_playing:
-    #     movies =
 
     return render_template(
         "index.html",
         heading=header_text_now_playing if now_playing else header_text_idle,
         movie_posters=posters,
     )
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

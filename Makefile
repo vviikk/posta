@@ -4,4 +4,4 @@ prepare:
 	python -m venv .venv --prompt posta
 
 start:
-	python main.py
+	python -m flask run --port 5999
