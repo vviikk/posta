@@ -1,6 +1,8 @@
 # posta - A dead simple Movie Poster "Now Showing" app for Plex
 
-![image](https://user-images.githubusercontent.com/1991125/172078821-6afb7dcb-19cb-40e2-b0fe-255fbcc54a90.png)
+![image](https://user-images.githubusercontent.com/1991125/172079055-bc06509b-40e2-4cfd-b0f2-ade2868d18d9.png)
+
+![image](https://user-images.githubusercontent.com/1991125/172079105-dbafd1b9-ae00-4dfe-83cd-ff6223ed7a06.png)
 
 I wanted a simple "now playing" app that will show the current playing movie on Plex, or pick 5 random movies and cycle through them.
 
