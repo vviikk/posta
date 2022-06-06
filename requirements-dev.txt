@@ -1,4 +1,4 @@
-mccabe
+mypy
 mock
 nose
 flake8

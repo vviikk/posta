@@ -14,6 +14,9 @@ ul {
   margin: 0;
   padding: 0;
   width: calc(100vw - 2rem);
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
 }
 ul li {
   padding: 0;
@@ -28,6 +31,8 @@ ul li img {
   --img-height: calc(100% - 0.5rem);
   max-height: var(--img-height);
   height: var(--img-height);
+  text-align: center;
+  display: inline-block;
 }
 
 body {

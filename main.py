@@ -5,6 +5,7 @@ import os
 import os.path
 from imdb import Cinemagoer
 from plexapi.myplex import MyPlexAccount, PlexServer
+from plexapi.video import Movie
 
 from load_env import load_env
 
@@ -32,28 +33,28 @@ def get_server():
     return server
 
 
-def make_safe_filename(s, y):
+def make_safe_filename(movie: Movie) -> str:
     def safe_char(c):
         if c.isalnum():
             return c
         else:
             return "_"
 
-    return "".join(safe_char(c) for c in s).rstrip("_") + f"_{y}.jpg"
+    safe_movie_title = "".join(safe_char(c) for c in movie.title).rstrip("_")
+
+    return f"{safe_movie_title}_{movie.year}.jpg"
 
 
-def get_poster_url(movie_name):
+def get_poster_url(movie_name: str) -> str:
     poster = ia.search_movie(movie_name)[0]["full-size cover url"]
     return poster
 
 
-def get_poster_file_name(movie):
-    movie_name = movie.title
-    movie_year = movie.year
-    return make_safe_filename(movie_name, movie_year)
+def get_poster_file_name(movie: Movie) -> str:
+    return make_safe_filename(movie)
 
 
-def download_poster_to_movie_name(movie):
+def download_poster_to_movie_name(movie: Movie) -> None:
     poster_filename = get_poster_file_name(movie)
     output_filename = f"posters/{poster_filename}"
 
@@ -67,38 +68,48 @@ def download_poster_to_movie_name(movie):
         print(f"Poster already downloaded: {movie.title} ({movie.year})")
 
 
-app = Flask(__name__, static_url_path="/static")
+app: Flask = Flask(__name__, static_url_path="/static")
 
-root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posters")
+root: str = os.path.join(os.path.dirname(os.path.abspath(__file__)), "posters")
 
 
 @app.route("/posters/<path:path>", methods=["GET"])
 def static_proxy(path):
+    """Servers all static files under directory 'static'
+
+    Args:
+        path (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     return send_from_directory(root, path)
 
 
 @app.route("/")
-def show_posters():
+def show_posters() -> str:
     server = get_server()
 
     current_sessions = [
         session for session in server.sessions() if session.type == "movie"
     ]
+
     now_playing = False
 
     if len(current_sessions):
         now_playing = True
 
-    movies = server.library.section(plex_movie_library).search()
+    # Get all movies from Plex
+    movies: list[Movie] = server.library.section(plex_movie_library).search()
 
+    # Only download up to 5 posters at any given time
     random_movies = random.sample(movies, 5)
-
     for movie in random_movies:
         print(f"Analyzing {movie.title} ({movie.year})")
 
         download_poster_to_movie_name(movie)
 
-    posters = []
+    posters: list[str] = []
 
     if not now_playing:
         posters = [get_poster_file_name(movie) for movie in random_movies]
@@ -113,4 +124,4 @@ def show_posters():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=bool(os.getenv("DEBUG", False)))
