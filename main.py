@@ -98,6 +98,8 @@ def show_posters():
 
         download_poster_to_movie_name(movie)
 
+    posters = []
+
     if not now_playing:
         posters = [get_poster_file_name(movie) for movie in random_movies]
     else:
