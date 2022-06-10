@@ -11,18 +11,25 @@
   </head>
   <body>
     <!-- partial:index.partial.html -->
-    <section>
-      <h1>{{heading}}</h1>
-      <div class="poster">
-        <ul class="slider">
-          {% for poster in movie_posters %}
-          <li class="slider__slide"><img src="/posters/{{ poster }}" /></li>
-          {% endfor %}
-        </ul>
-      </div>
+    <section class="{{ class_names }}">
+      <h1 id="heading">{{heading}}</h1>
+      <ul class="slider">
+        {% for poster in movie_posters %}
+        <li class="slider__slide">
+          <img src="/posters/{{ poster }}" />
+          <div
+            class="img"
+            style="background-image: url('/posters/{{ poster }}');"
+          ></div>
+        </li>
+        {% endfor %}
+      </ul>
     </section>
     <!-- partial -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+    <script>
+      const showHeading = !!'{{heading}}'
+    </script>
     <script src="/static/script.js"></script>
   </body>
 </html>
